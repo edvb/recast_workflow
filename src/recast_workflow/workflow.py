@@ -212,7 +212,7 @@ def make_workflow(steps: List[str], names: List[str], environment_settings: List
                     raise ValueError(
                         f'interface {interfaces["input"]} has a parameter {parameter["name"]} that conflicts with a parameter for workflow {name} for step {step}.')
                 parameters[parameter['name']] = {
-                    'step': workflow['stages'][-1]['name'], 'output': parameter['name']}
+                    'step': 'init'  if len(workflow['stages']) == 0 else workflow['stages'][-1]['name'], 'output': parameter['name']}
         subworkflow['stages'][0]['scheduler']['parameters'] = parameters
         # Add dependencies to subworkflow
         if i > 0:
