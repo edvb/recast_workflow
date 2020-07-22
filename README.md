@@ -2,7 +2,7 @@
 
 The current progress of the fellowship can be read [here](https://github.com/vladov3000/recast_workflow/blob/master/PROGRESS.md).
 
-Recast_workflow is a tool for creating new computation workflow for running physics analyses. The generated workflows are interpreted by the [Yadage engine](https://github.com/yadage/yadage) and are stored as .yml files. The package comes with a command line interface as while as a python package.
+Recast_workflow is a tool for creating new computation workflow for running physics analyses. The generated workflows are interpreted by the [Yadage engine](https://github.com/yadage/yadage) and are stored as .yml files. The package comes with a command line interface as well as a python library.
 
 This is currently being developed as part of IRIS-HEP fellowship. The full proposal can be viewed [here](https://iris-hep.org/fellows/vovechkin.html). 
 
