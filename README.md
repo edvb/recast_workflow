@@ -20,16 +20,16 @@ These will be moved to documentation later but for now, they will be here. To in
     
 Expected test results:
 
-==================================================== test session starts ====================================================
-platform darwin -- Python 3.7.7, pytest-3.10.1, py-1.9.0, pluggy-0.13.1
-rootdir: /Users/vlad/Documents/EPEprojects/recast_workflow, inifile:
-collected 37 items                                                                                                          
+    ==================================================== test session starts ====================================================
+    platform darwin -- Python 3.7.7, pytest-3.10.1, py-1.9.0, pluggy-0.13.1
+    rootdir: /Users/vlad/Documents/EPEprojects/recast_workflow, inifile:
+    collected 37 items                                                                                                          
 
-tests/images/test_build_utils.py .........                                                                            [ 24%]
-tests/images/test_builds.py .                                                                                         [ 27%]
-tests/scripts/test_catalogue.py ..............                                                                        [ 64%]
-tests/scripts/workflow/test_workflow.py ..s......                                                                     [ 89%]
-tests/subworkflows/selection/test_rivet.py ....                                                                       [100%]
+    tests/images/test_build_utils.py .........                                                                            [ 24%]
+    tests/images/test_builds.py .                                                                                         [ 27%]
+    tests/scripts/test_catalogue.py ..............                                                                        [ 64%]
+    tests/scripts/workflow/test_workflow.py ..s......                                                                     [ 89%]
+    tests/subworkflows/selection/test_rivet.py ....                                                                       [100%]
 
-=========================================== 36 passed, 1 skipped in 8.12 seconds ============================================
+    =========================================== 36 passed, 1 skipped in 8.12 seconds ============================================
 
