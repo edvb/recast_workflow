@@ -1,7 +1,6 @@
 from pathlib import Path
 
 SRC_DIR = Path(__file__).resolve().parent
-print(SRC_DIR)
 ROOT_DIR = SRC_DIR.parent
 TESTS_DIR = ROOT_DIR / 'tests'
 WORKFLOWS_DIR = ROOT_DIR / 'workflows'
