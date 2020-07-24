@@ -1,24 +1,44 @@
 """CLI group for creating new workflows"""
 import click
+import yaml
 
 from recast_workflow import catalogue
+from recast_workflow import workflow
 
 @click.group(name='make')
 def cli():
     """Command group for creating new workflows"""
 
 @cli.command()
-@click.option('-w', '--wf-path', type=click.Path(file_okay=True, resolve_path=True))
-def new(wf_path):
-    # user filters combinations by adding common inputs
-    done_adding_ci = False
+@click.option('-n','--names', help='Comma seperated names of subworkflows in workflow.', type=str)
+@click.option('-s','--steps', help='Comma seperated names of steps workflow fufills.', type=str)
+@click.option('-x','--no-interact', is_flag=True, help='Run make in non-interactive mode, only using cli arguements')
+@click.option('-c', '--common-inputs', help='String of comma seperated common inputs in the form KEY=VALUE,KEY1=VALUE,...', type=str)
+@click.option('--view-only', is_flag=True, help='Only view combinations, do not make workflow.')
+@click.option('-o','--output-path', type=click.Path(file_okay=True, resolve_path=True), help='Path to output generated workflow to.')
+def new(output_path, view_only, common_inputs, no_interact, names, steps):
+    # User filters combinations by adding common inputs
+    done_adding_ci = no_interact
     ci_used = {}
+
+    # Parse input for common input key and value
+    def add_ci(ci: str):
+        cil = ci.split('=')
+        if len(cil) == 2:
+            ci_used[cil[0].strip()] = cil[1].strip()
+        else:
+            click.secho(f"Common input '{ci}' not recognized.")
+
+    # Check if common inputs already given
+    if common_inputs:
+        # Convert common input str to dict
+        for i in common_inputs.split(','): add_ci(i.strip())
 
     while not done_adding_ci:
         combos = catalogue.get_valid_combinations(ci_used)
-        if len(combos) < 1: click.secho('No valid combinations for given common inputs')
+        if len(combos) == 0: click.secho('No valid combinations for given common inputs')
 
-        # display all valid combinations
+        # Display all valid combinations
         for index, combo in enumerate(combos):
             click.secho('-' * 50)
             click.secho(f'Combination {index + 1}:')
@@ -27,24 +47,47 @@ def new(wf_path):
             for k, v in combo.items(): click.secho(fmt.format(k, v))
         click.secho('-' * 50)
 
-        # display current common inputs
+        # Display current common inputs
         if ci_used != {}: click.secho('Current common inputs used:')
         for k, v in ci_used.items(): click.secho(f'\t{k}={v}')
         click.secho()
 
-        # check to add another common input
-        ci_to_add = click.prompt("Add an additional common input or enter 'done' to continue", type=str)
+        # Check to add another common input
+        ci_to_add = click.prompt("Add an additional common input or enter 'done' to continue", default='done',
+                show_default=False, type=str)
 
-        # check if user is done adding ci
-        if ci_to_add == '' or ci_to_add.lower() == 'done':
+        # Check if user is done adding ci
+        if ci_to_add.lower() == 'done':
             done_adding_ci = True
             break
+        add_ci(ci_to_add)
 
-        # Parse input for common input key and value
-        ci_to_add = ci_to_add.split('=')
-        if len(ci_to_add) == 2:
-            ci_used[ci_to_add[0]] = ci_to_add[1]
-        else:
-            click.secho('Common input not recognized.')
+    # TODO: Add enviroment setting selection (similiar to common input process)
 
-    click.confirm('Do you want to start the "make" process?', abort=True)
+    if view_only: return
+
+    if not steps: steps = []
+    if not names: names = []
+    env_settings = []
+    if not no_interact:
+        # Pick a combination number
+        workflow_index = click.prompt('Select a combination, or enter 0 to cancel', type=int) - 1
+        while not -1 <= workflow_index < len(combos):
+            workflow_index = click.prompt('Invalid index. Try again', type=int) - 1
+        if workflow_index == -1: return
+
+        # Split into steps and names
+        for k, v in combos[workflow_index].items():
+            steps.append(k)
+            names.append(v)
+            env_settings.append({})
+    else:
+        steps = [i.strip() for i in steps.split(',')]
+        names = [i.strip() for i in names.split(',')]
+        env_settings = [{} for i in names]
+
+    # Run recast_workflow on inputs
+    workflow_text = yaml.dump(workflow.make_workflow(steps, names, env_settings))
+    print(workflow_text)
+
+
