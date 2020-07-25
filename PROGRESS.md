@@ -80,10 +80,25 @@ Below are comprehensive summaries of progress for each week. New progress will a
   - With pyhf, I was able to convert a HistFitter analysis workspace to pyhf and do a basic fit.
   - This was done for the MonoJet analysis to reproduce its results as well as for a simple single-bin example. The githubs repos are [here](https://github.com/vladov3000/HistToPyhf) and [here](https://github.com/vladov3000/pyvshf).
   - I am ready to start pyhf integration into recast-workflow and focus on reworking recast-workflow through better organization and more unit tests
-  
+ 
+ ### Week 6 (July 24):
+  - I added back the command line interface component to recast-workflow
+  - Found at https://github.com/vladov3000/recast_workflow/tree/master/src/recast_workflow/cli
+  - This includes the `recast-wf make new` command that creates a new workflow using an interactive input process from the user
+  - The make new command also takes command line arguements that can be substituted in for user input, such that the whole process of making a new workflow can be run without interaction
+  - This is useful for a potential backend of a website that provides a UI for making these workflows, so the backend can just run the command with comprehensive arguments for any requests
+  - Furthermore, I reimplemented the inventory system (renamed from catalogue).
+  - Before, the 'catalogue' in recast-workflow was ambigious. Now, the catalogue is just a list of all the possible workflows for the given filters which the user can pick from. The inventory is a cache of these generated workflows that can be accessed from any directory on the user's machine.
+  - This puts the rework of recast-workflow to about 90% of what it was before the research fellowship began
+  - All that is left is adding get_dir (which returns a directory with a run script for executing the workflow) and miscellaneous functions for the inventory
+  - Then, the newer features can be copy-pasted and tested more thoroughly with the new system.
+  - The subworkflow specifications for pyhf are complete (description.yml, common_inputs.py, workflow.yml), but the docker image is incomplete. The [python script](https://github.com/vladov3000/recast_workflow/blob/master/src/recast_workflow/images/pyhf/make_patch.py) that is the entrypoint for the pyhf docker image currently does nothing with the given arguements.
+  - Currently, I have been implementing [my own CL calculator](https://github.com/vladov3000/learncls/blob/master/s5.1-counting-expirement.ipynb) using this [paper](https://arxiv.org/pdf/1007.1727.pdf). Pyhf uses the same approximate formulas, so I should get a better understanding of the pyhf source code and how to find the cls using pyhf.
+  - Then, I can finish the pyhf scipt next week and the CL calculator will also be done by Wednesday next week.
+ 
 ### TODO:
   - Finish integrating recast-cli into recast-workflow
-  - Add pyhf subworkflow
+  - Finish pyhf docker image
   - Create unit tests for new features
   - Thoroughly debug new features
   - Start writing readthedocs for recast-workflow
