@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 SRC_DIR = Path(__file__).resolve().parent
 ROOT_DIR = SRC_DIR.parent
@@ -8,3 +9,6 @@ INTERFACE_DIR = SRC_DIR / 'interfaces'
 SUBWORKFLOWS_DIR = SRC_DIR / 'subworkflows'
 IMAGES_DIR = SRC_DIR / 'images'
 CACHE_DIR = ROOT_DIR / 'cache'
+INV_DIR = SRC_DIR / 'inventory'
+
+if not INV_DIR.exists(): os.mkdir(INV_DIR)

@@ -150,5 +150,5 @@ def verify_data(result):
         logging.error('vvvvvv')
         for k, v in result.iteritems():
             logging.error(f'{k} {type(v)} {v}')
-        raise RuntimeError('Type Problem')    
+        raise RuntimeError('Type Problem')
     return interface
