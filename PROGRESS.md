@@ -88,7 +88,7 @@ Below are comprehensive summaries of progress for each week. New progress will a
   - The make new command also takes command line arguements that can be substituted in for user input, such that the whole process of making a new workflow can be run without interaction
   - This is useful for a potential backend of a website that provides a UI for making these workflows, so the backend can just run the command with comprehensive arguments for any requests
   - Furthermore, I reimplemented the inventory system (renamed from catalogue).
-  - Before, the 'catalogue' in recast-workflow was ambigious. Now, the catalogue is just a list of all the possible workflows for the given filters which the user can pick from. The inventory is a cache of these generated workflows that can be accessed from any directory on the user's machine.
+  - Before, the 'catalogue' in recast-workflow was ambigious. Now, the catalogue is just a list of all the possible workflows for the given filters which the user can pick from. While the inventory is a cache of these generated workflows that can be accessed from any directory on the user's machine.
   - This puts the rework of recast-workflow to about 90% of what it was before the research fellowship began
   - All that is left is adding get_dir (which returns a directory with a run script for executing the workflow) and miscellaneous functions for the inventory
   - Then, the newer features can be copy-pasted and tested more thoroughly with the new system.
