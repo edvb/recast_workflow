@@ -27,12 +27,13 @@ def ls():
 @click.option('-f', '--force', is_flag=True, help='Do not ask for confirmation before removing.')
 @click.argument('names', nargs=-1)
 def rm(names, rm_all, force):
-    """ Remove workflow from inventory """
+    """ Remove workflows with names NAMES from inventory """
 
     def confirm() -> bool:
         """ Ask for confirmation before removing """
         if force: return True
-        return click.confirm('Are you sure you would like to delete all workflows in inventory?', abort=True)
+        toRm = "all" if rm_all else ' '.join(names)
+        return click.confirm('Are you sure you would like to delete {toRm} workflows in inventory?', abort=True)
 
     if rm_all:
         if not force and not confirm(): return
@@ -42,7 +43,25 @@ def rm(names, rm_all, force):
         for n in names: inventory.remove(n)
 
 @cli.command()
-@click.argument('path')
-@click.option('-n', '--name', type=str, help='set name in inventory')
+@click.option('-n', '--name', type=str, help='Set name in inventory')
+@click.argument('path', type=click.Path(exists=True))
 def add(path, name):
-    """ Add workflow at PATH to inventory. """
+    """ Add workflow in .yml file at PATH to inventory. """
+
+    inventory.add(path, name)
+
+@cli.command()
+@click.argument('name', type=str, help='Name of workflow in inventory.')
+@click.option('-o','--output-path', type=click.Path(file_okay=True, resolve_path=True), help='Path to output found workflow to.')
+def getyml(name, output_path):
+    """ Get text of workflow from inventory. """
+
+    res = get_inv_wf_yml(output_path, text=True)
+    if not output_path: print(res)
+
+@cli.command()
+@click.argument('name', type=str, help='Name of workflow in inventory.')
+@click.option('-o','--output-path', type=click.Path(file_okay=True, resolve_path=True), help='Path to output directory to.')
+def getdir(name, output_path):
+    """ Get directory with run script, inputs folder, and workflow """
+    inventory.getdir(name, output_path)

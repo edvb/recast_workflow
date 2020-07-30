@@ -88,6 +88,9 @@ def new(output_path, view_only, common_inputs, no_interact, names, steps):
 
     # Run recast_workflow on inputs
     workflow_text = yaml.dump(workflow.make_workflow(steps, names, env_settings))
-    print(workflow_text)
 
-
+    if output_path:
+        with open(output_path, 'w+') as output_file:
+            output_file.write(workflow_text)
+    else:
+        print(workflow_text)
