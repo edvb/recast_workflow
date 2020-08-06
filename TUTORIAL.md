@@ -1,5 +1,39 @@
 # Recast-workflow Tutorial
 
+# List of Commands (For Alex)
+
+    # Setup
+    mkdir rwf_analysis
+    cd rwf_analysis
+    python3 -m venv ./venv
+    source ./venv
+    git clone https://github.com/vladov3000/recast_workflow.git
+    
+    
+    # Creating workflow
+    recast-wf make new
+    # Add common input by typing analysis_id=1458270 then enter done
+    # Select combination using contur for statistics step
+    # Save to inventory
+    recast-wf inv ls
+    recast-wf inv getdir madgraph_pythia-rivet-contur .
+    cd madgraph_pythia-rivet-contur
+    
+    # Add inputs and run
+    cd inputs
+    vim proc_card_dm.dat 
+    # Using a text editor write the following mdagraph process:
+        import model DMsimp_s_spin1 --modelname
+        generate p p > xd xd~ j
+    vim input.yml
+    # Using a text editor, specify inputs:
+        proc_card: 'proc_card_dm.dat'
+        n_events: 1000
+        analysis_id: ATLAS_2016_I1458270
+    cd ..
+    ./run.sh OR 
+    
+
 # Setup
 Ensure python >= 3.6 is installed. It is reccomended to run in a virtual enviroment, so create and source a new python venv.
 
