@@ -23,7 +23,7 @@
     # Add inputs and run
     cd inputs
     vim proc_card_dm.dat 
-    # Using a text editor write the following mdagraph process:
+    # Using a text editor write the following madgraph process:
         import model DMsimp_s_spin1 --modelname
         generate p p > xd xd~ j
     vim input.yml
