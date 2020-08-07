@@ -8,6 +8,7 @@
     python3 -m venv ./venv
     source ./venv
     git clone https://github.com/vladov3000/recast_workflow.git
+    pip install ./recast_workflow
     
     
     # Creating workflow
