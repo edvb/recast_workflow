@@ -95,9 +95,20 @@ Below are comprehensive summaries of progress for each week. New progress will a
   - The subworkflow specifications for pyhf are complete (description.yml, common_inputs.py, workflow.yml), but the docker image is incomplete. The [python script](https://github.com/vladov3000/recast_workflow/blob/master/src/recast_workflow/images/pyhf/make_patch.py) that is the entrypoint for the pyhf docker image currently does nothing with the given arguements.
   - Currently, I have been implementing [my own CL calculator](https://github.com/vladov3000/learncls/blob/master/s5.1-counting-expirement.ipynb) using this [paper](https://arxiv.org/pdf/1007.1727.pdf). Pyhf uses the same approximate formulas, so I should get a better understanding of the pyhf source code and how to find the cls using pyhf.
   - Then, I can finish the pyhf scipt next week and the CL calculator will also be done by Wednesday next week.
+
+### Week 7 (July 31):
+  - I finished the rest of the 'base' command line features this week.
+  - `recast-wf inv add/getyml/getdir` now work.
+  - The inventory works as a glocal storage for workflows generated/used by recast-workflow.
+  - `add` will add a workflow to the inventory at a local path. This will be useful later when the scan build feature is copied back in. This would allow users to take a workflow too complex for recast-wf to make, and convert it to a multistage workflow (allowing for parameter scans and parallelisation using REANA).
+  - `getyml` will print the workflow text or give a yaml file with the workflow. Since recast-wf automatically replaces all references to other files in the main workflow file, the whole workflow can be stored in one yaml file.
+  - `getdir` will produce a directory which includes some extra files/folders to organize the process of running the workflow. For example, it includes a run script which is used as an alias so users don't have to type in the full command to run a yadage workflow with the right arguments (`yadage-run workdir $WORKFLOW inputs/input.yml -d initdir=$PWD/inputs` -> `./run.sh`). All the extra files are stored in a templates folder which can be easily modified to include new files.
+  - There are still some complexities with pyhf which require more investigation. Specifically, how .yoda files translate to pyhf JSON histograms. 
+  - I have also begun working on documentation by writing the introduction of the first tutorial (this will later be moved to a readthedocs.io page): https://github.com/vladov3000/recast_workflow/blob/master/TUTORIAL.md
+  - There will also be a summer workshop soon where we want to present recast-workflow, so we have been brainstorming more ideas of applications of recast.
+  - I have also been reading through a paper on statistics in physics and constructing a presentation concurently that can be used to explain the analysis/statistic subworkflows well to new students/users.
  
 ### TODO:
-  - Finish integrating recast-cli into recast-workflow
   - Finish pyhf docker image
   - Create unit tests for new features
   - Thoroughly debug new features
