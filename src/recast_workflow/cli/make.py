@@ -4,6 +4,7 @@ import yaml
 
 from recast_workflow import catalogue
 from recast_workflow import workflow
+from recast_workflow import inventory
 
 @click.group(name='make')
 def cli():
@@ -16,7 +17,8 @@ def cli():
 @click.option('-c', '--common-inputs', help='String of comma seperated common inputs in the form KEY=VALUE,KEY1=VALUE,...', type=str)
 @click.option('--view-only', is_flag=True, help='Only view combinations, do not make workflow.')
 @click.option('-o','--output-path', type=click.Path(file_okay=True, resolve_path=True), help='Path to output generated workflow to.')
-def new(output_path, view_only, common_inputs, no_interact, names, steps):
+@click.option('-i','--save-inv', is_flag=True, help='Save made workflow to inventory.')
+def new(output_path, view_only, common_inputs, no_interact, names, steps, save_inv):
     # User filters combinations by adding common inputs
     done_adding_ci = no_interact
     ci_used = {}
@@ -89,6 +91,11 @@ def new(output_path, view_only, common_inputs, no_interact, names, steps):
     # Run recast_workflow on inputs
     workflow_text = yaml.dump(workflow.make_workflow(steps, names, env_settings))
 
+    # Save to inventory
+    if click.confirm('Save to inventory?'): save_inv = True
+    if save_inv: inventory.add('', name='-'.join(names), raw_text=workflow_text)
+
+    # Save to file or print text
     if output_path:
         with open(output_path, 'w+') as output_file:
             output_file.write(workflow_text)

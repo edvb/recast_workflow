@@ -5,7 +5,7 @@ import yaml
 from typing import Dict, List
 import shutil
 
-from recast_workflow.definitions import INV_DIR
+from recast_workflow.definitions import *
 
 def get_wf_path(path: str) -> str:
     """ Get path to workflow. Returns None if not found."""
@@ -32,7 +32,7 @@ def get_inv_wf_path(name: str) -> str:
 
     # Get name's path
     wf_path = INV_DIR / f'{name}'
-    if not name.exists():
+    if not wf_path.exists():
         print("{name} not found in inventory.")
         return
     return wf_path
@@ -60,19 +60,28 @@ def list_inv() -> List[str]:
 
 def remove(name: str):
     """ Remove workflow from inventory """
-    if not (wf_path := get_inv_wf_path(name)): return
+    wf_path = get_inv_wf_path(name)
+    if not wf_path: return
     os.remove(wf_path)
 
-def add(path: str, name=''):
+def add(path: str, name='', raw_text=''):
     """ Add workflow at path to inventory """
+    if raw_text:
+        with open(INV_DIR / f'{name}.yml', 'w+') as wf_file:
+            wf_file.write(raw_text)
+        return
+
     if not name: name = path.rsplit('/',1)[-1]
     name = name.rstrip('.yml')
     path = os.path.abspath(path)
-    shutil.copyfile(path, SRC_DIR / f'{name}.yml')
+    shutil.copyfile(path, INV_DIR / f'{name}.yml')
 
 def get_dir(name: str, output_path:str):
     """ Get directory with run script, inputs folder, and workflow """
-    if not (wf_path := get_inv_wf_path(name)): return
-    shutil.copytree(YADAGE_DIR, output_path)
-    os.mkdir(output_path + '/workflows')
-    shutil.copyfile(wf_path, output_path + '/workflows/workflow.yml')
+    wf_path = get_inv_wf_path(name)
+    if not wf_path: return
+    output_path = Path(output_path)
+    if output_path.exists(): output_path = output_path / name
+    shutil.copytree(YADAGE_T_DIR, output_path)
+    os.mkdir(output_path / 'workflows')
+    shutil.copyfile(wf_path, output_path / 'workflows/workflow.yml')

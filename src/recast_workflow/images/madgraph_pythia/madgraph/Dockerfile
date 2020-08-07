@@ -1,6 +1,6 @@
 FROM ubuntu
 RUN apt-get -y update
-RUN apt-get -y install python2.7 gcc gfortran g++ make python-pip wget gnuplot bc cmake rsync
+RUN apt-get -y install python2.7 gcc gfortran g++ make python-pip wget gnuplot bc cmake rsync zip unzip
 RUN pip install numpy scipy
 RUN mkdir /code
 WORKDIR /code

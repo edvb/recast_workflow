@@ -1,6 +1,7 @@
 """ Command group for recast-workflow inventory """
 import click
 import time
+import os
 
 import recast_workflow.inventory as inventory
 
@@ -20,7 +21,7 @@ def ls():
     click.echo('-' * 80)
     click.echo(fmt.format("WORKFLOW NAMES", "TIME LAST MODIFIED"))
     click.echo('-' * 80)
-    for wf in li: click.echo(fmt.format(wf), time.ctime(os.path.getmtime(inventory.get_inv_wf_path(wf))))
+    for wf in li: click.echo(fmt.format(wf, time.ctime(os.path.getmtime(inventory.get_inv_wf_path(wf)))))
 
 @cli.command()
 @click.option('--all', metavar='rm_all', is_flag=True, help='Remove all workflows in inventory.')
@@ -51,7 +52,7 @@ def add(path, name):
     inventory.add(path, name)
 
 @cli.command()
-@click.argument('name', type=str, help='Name of workflow in inventory.')
+@click.argument('name', type=str)
 @click.option('-o','--output-path', type=click.Path(file_okay=True, resolve_path=True), help='Path to output found workflow to.')
 def getyml(name, output_path):
     """ Get text of workflow from inventory. """
@@ -60,8 +61,8 @@ def getyml(name, output_path):
     if not output_path: print(res)
 
 @cli.command()
-@click.argument('name', type=str, help='Name of workflow in inventory.')
-@click.option('-o','--output-path', type=click.Path(file_okay=True, resolve_path=True), help='Path to output directory to.')
+@click.argument('name', type=str)
+@click.argument('output-path', type=click.Path(file_okay=True, resolve_path=True))
 def getdir(name, output_path):
     """ Get directory with run script, inputs folder, and workflow """
-    inventory.getdir(name, output_path)
+    inventory.get_dir(name, output_path)
