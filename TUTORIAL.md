@@ -13,7 +13,7 @@
     # Creating workflow
     recast-wf make new
     # Add common input by typing analysis_id=1458270 then enter done
-    # Select combination using contur for statistics step (this will take some time to build all the subworkflow docker images)
+    # Select combination using contur for statistics step
     # Save to inventory
     recast-wf inv ls
     recast-wf inv getdir madgraph_pythia-rivet-contur .
