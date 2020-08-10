@@ -7,7 +7,6 @@ import shutil
 import tempfile
 from pathlib import Path
 from typing import Dict, List, Tuple
-
 import yaml
 
 from recast_workflow import definitions
@@ -222,14 +221,18 @@ def make_workflow(steps: List[str], names: List[str], environment_settings: List
     return workflow
 
 
-def get_inputs(workflow):
+def get_inputs(workflow, path='') -> List[str]:
     """ Find all inputs to a yadage workflow with no encapsulated workflows.
     Args:
         dictionary that represents workflow
+        Or path to workflow .yml file
     Returns:
         List of names of all parameters that come from the 'init' stage in yadage
     """
     # TODO: if multistage workflows are added, this function will have to recursively run through workflows
+    if path:
+        workflow = yaml.safe_load(open(path, 'r+'))
+
     inputs = []
     for stage in workflow['stages']:
         parameters = stage['scheduler']['parameters']

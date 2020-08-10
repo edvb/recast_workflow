@@ -21,4 +21,5 @@ def get_analyses():
 
 
 def is_valid(analysis_id: str) -> bool:
-    return analysis_id in get_analyses()
+    analyses = get_analyses()
+    return analysis_id in analyses or analysis_id in [i[0] for i in analyses.values()]

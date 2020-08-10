@@ -5,6 +5,7 @@ import yaml
 from typing import Dict, List
 import shutil
 
+import recast_workflow.workflow as workflow
 from recast_workflow.definitions import *
 
 def get_wf_path(path: str) -> str:
@@ -46,7 +47,7 @@ def get_inv_wf_yml(name: str, output_file='', text=False) -> Dict:
     if output_file:
         with open(output_file, 'w+') as out_file:
             out_file.write(wf_text)
-    return wf_text if text else yaml.load(wf_text)
+    return wf_text if text else yaml.safe_load(wf_text)
 
 def list_inv() -> List[str]:
     """ Returns list all workflow names in inventory """
@@ -76,12 +77,21 @@ def add(path: str, name='', raw_text=''):
     path = os.path.abspath(path)
     shutil.copyfile(path, INV_DIR / f'{name}.yml')
 
-def get_dir(name: str, output_path:str):
+def get_dir(name: str, output_path: str):
     """ Get directory with run script, inputs folder, and workflow """
     wf_path = get_inv_wf_path(name)
     if not wf_path: return
+
     output_path = Path(output_path)
     if output_path.exists(): output_path = output_path / name
+    new_wf_path = output_path / 'workflows' / 'workflow.yml'
+
+    # Copy template dir and modify it
     shutil.copytree(YADAGE_T_DIR, output_path)
     os.mkdir(output_path / 'workflows')
-    shutil.copyfile(wf_path, output_path / 'workflows/workflow.yml')
+    shutil.copyfile(wf_path, new_wf_path)
+
+    # Fill inputs.yml
+    with open(output_path / 'inputs' / 'input.yml', 'w+') as inputs_file:
+        inputs = {i: None for i in workflow.get_inputs({}, path=new_wf_path)}
+        yaml.dump(inputs, inputs_file)

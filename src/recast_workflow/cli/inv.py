@@ -2,8 +2,10 @@
 import click
 import time
 import os
+import yaml
 
 import recast_workflow.inventory as inventory
+import recast_workflow.workflow as workflow
 
 @click.group(name='inv')
 def cli():
@@ -54,11 +56,19 @@ def add(path, name):
 @cli.command()
 @click.argument('name', type=str)
 @click.option('-o','--output-path', type=click.Path(file_okay=True, resolve_path=True), help='Path to output found workflow to.')
+@click.option
 def getyml(name, output_path):
     """ Get text of workflow from inventory. """
 
-    res = get_inv_wf_yml(output_path, text=True)
-    if not output_path: print(res)
+    res = inventory.get_inv_wf_yml(name, text=True)
+    if not output_path:
+        print(res)
+        return
+    else:
+        if not output_path.endswith('.yml'): output_path += f'/{name}.yml'
+        with open(output_path, 'w+') as output_file:
+            output_file.write(res)
+
 
 @cli.command()
 @click.argument('name', type=str)
@@ -66,3 +76,21 @@ def getyml(name, output_path):
 def getdir(name, output_path):
     """ Get directory with run script, inputs folder, and workflow """
     inventory.get_dir(name, output_path)
+
+@cli.command()
+@click.option('-p', '--path', type=click.Path(exists=True), help='Path to workflow file')
+@click.option('-n', '--name', type=str, help='Name of workflow in inventory')
+@click.option('-o','--output-path', type=click.Path(file_okay=True, resolve_path=True), help='Path to output inputs.yml to.')
+def getinputs(path, name, output_path):
+    """ Get inputs for workflow saved locally or in inventory. Can output inputs.yml file """
+    if not (path or name): return
+
+    wf_yml = inventory.get_inv_wf_yml(name) if name else {}
+    res = {i:None for i in workflow.get_inputs(wf_yml, path=path)}
+
+    inputs_text = yaml.dump(res)
+    if output_path:
+        with open(output_path, 'w+') as output_file:
+            output_file.write(inputs_text)
+    else:
+        click.echo(inputs_text)
