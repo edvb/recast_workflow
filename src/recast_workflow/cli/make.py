@@ -5,10 +5,30 @@ import yaml
 from recast_workflow import catalogue
 from recast_workflow import workflow
 from recast_workflow import inventory
+from recast_workflow import utils
 
 @click.group(name='make')
 def cli():
     """Command group for creating new workflows"""
+
+@cli.command()
+def inputs():
+    """ List common inputs available for generating valid combinations. """
+    params = utils.get_common_inputs(include_descriptions=True)
+    fmt = '{0:20}{1:60}{2:40}'
+    click.secho(fmt.format(
+        'INPUT',
+        'DESCRIPTION',
+        'STEPS'
+    ))
+    for key, value in params.items():
+        click.secho(
+            fmt.format(
+                key,
+                value.get('description', 'no description'),
+                str(value.get('steps', 'no steps'))
+            )
+        )
 
 @cli.command()
 @click.option('-n','--names', help='Comma seperated names of subworkflows in workflow.', type=str)
