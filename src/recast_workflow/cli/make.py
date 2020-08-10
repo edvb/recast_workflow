@@ -38,7 +38,8 @@ def inputs():
 @click.option('--view-only', is_flag=True, help='Only view combinations, do not make workflow.')
 @click.option('-o','--output-path', type=click.Path(file_okay=True, resolve_path=True), help='Path to output generated workflow to.')
 @click.option('-i','--save-inv', is_flag=True, help='Save made workflow to inventory.')
-def new(output_path, view_only, common_inputs, no_interact, names, steps, save_inv):
+@click.option('-p','--print', 'print_wf', is_flag=True, help='Print workflow when done.')
+def new(output_path, view_only, common_inputs, no_interact, names, steps, save_inv, print_wf):
     # User filters combinations by adding common inputs
     done_adding_ci = no_interact
     ci_used = {}
@@ -112,12 +113,13 @@ def new(output_path, view_only, common_inputs, no_interact, names, steps, save_i
     workflow_text = yaml.dump(workflow.make_workflow(steps, names, env_settings))
 
     # Save to inventory
-    if click.confirm('Save to inventory?'): save_inv = True
+    if not save_inv and not no_interact and click.confirm('Save to inventory?'): save_inv = True
     if save_inv: inventory.add('', name='-'.join(names), raw_text=workflow_text)
 
     # Save to file or print text
     if output_path:
         with open(output_path, 'w+') as output_file:
             output_file.write(workflow_text)
-    else:
-        print(workflow_text)
+
+    if not print_wf and not no_interact and click.confirm('Show workflow?'): print_wf = True
+    if print_wf: print(workflow_text)

@@ -24,6 +24,7 @@ def ls():
     click.echo(fmt.format("WORKFLOW NAMES", "TIME LAST MODIFIED"))
     click.echo('-' * 80)
     for wf in li: click.echo(fmt.format(wf, time.ctime(os.path.getmtime(inventory.get_inv_wf_path(wf)))))
+    print()
 
 @cli.command()
 @click.option('--all', metavar='rm_all', is_flag=True, help='Remove all workflows in inventory.')
@@ -56,7 +57,6 @@ def add(path, name):
 @cli.command()
 @click.argument('name', type=str)
 @click.option('-o','--output-path', type=click.Path(file_okay=True, resolve_path=True), help='Path to output found workflow to.')
-@click.option
 def getyml(name, output_path):
     """ Get text of workflow from inventory. """
 
@@ -75,7 +75,10 @@ def getyml(name, output_path):
 @click.argument('output-path', type=click.Path(file_okay=True, resolve_path=True))
 def getdir(name, output_path):
     """ Get directory with run script, inputs folder, and workflow """
-    inventory.get_dir(name, output_path)
+    try:
+        inventory.get_dir(name, output_path)
+    except FileExistsError as e:
+        click.echo(f'Directory already exists: {str(e).rpartition(" ")[-1]}')
 
 @cli.command()
 @click.option('-p', '--path', type=click.Path(exists=True), help='Path to workflow file')
