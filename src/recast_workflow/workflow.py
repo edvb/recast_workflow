@@ -229,7 +229,6 @@ def get_inputs(workflow, path='') -> List[str]:
     Returns:
         List of names of all parameters that come from the 'init' stage in yadage
     """
-    # TODO: if multistage workflows are added, this function will have to recursively run through workflows
     if path:
         workflow = yaml.safe_load(open(path, 'r+'))
 

@@ -52,7 +52,7 @@ def rm(names, rm_all, force):
 def add(path, name):
     """ Add workflow in .yml file at PATH to inventory. """
 
-    inventory.add(path, name)
+    inventory.add(path, name=name)
 
 @cli.command()
 @click.argument('name', type=str)
