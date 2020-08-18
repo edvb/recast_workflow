@@ -121,7 +121,7 @@ Then, open `inputs/input.yml` in a text editor. The contents of the file should 
     recast-wf inv getdir madgraph_pythia-rivet-contur .
     cd madgraph_pythia-rivet-contur
     
-    # Add inputs and run
+    # Add inputs and run for one point
     cd inputs
     vim proc_card_dm.dat 
     # Using a text editor write the following madgraph process:
@@ -134,3 +134,8 @@ Then, open `inputs/input.yml` in a text editor. The contents of the file should 
         analysis_id: ATLAS_2016_I1458270
     cd ..
     ./run.sh
+    
+    # Create and run a scan
+    recast-wf scan build -n madgraph_pythia-rivet-contur proc_card | less # if you just want to check out the output yml
+    recast-wf scan build -n madgraph_pythia-rivet-contur -i proc_card
+    recast-wf inv ls # Confirm multi_madgraph_pythia_rivet_contur is present
