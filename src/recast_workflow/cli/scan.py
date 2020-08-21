@@ -33,11 +33,22 @@ def build(name, filepath, output_path, scanparams, inv_save):
 
     if inv_save:
         inv.add('', f'multi_{workflow.make_name(single_wf_yml)}', raw_text=multi_wf_txt)
-    elif output_path:
+    if output_path:
         with open(output_path, 'w+') as output_file:
             output_file.write(multi_wf_txt)
-    else:
+    if not inv_save and not output_path:
         click.echo(multi_wf_txt)
+
+@cli.command()
+@click.option('-o','--output-path', type=click.Path(file_okay=True, resolve_path=True), help='Path to output built workflow to.')
+@click.argument('template', type=click.Path(exists=True))
+@click.argument('scanparams', type=str)
+def getinputs(template, output_path, scanparams):
+    """ Generates input files by formatting template using scanparams dict 
+    (eg. {param1: [value1, value2], param2: ...})."""
+
+    if not output_path: output_path = '.'
+    make_inputs(template, output_path, yaml.safe_load(scanparams))
 
 @cli.command()
 def getrspec():
