@@ -1,6 +1,6 @@
 import os
 from string import Formatter
-from typing import Listi
+from typing import List, Dict
 
 import recast_workflow.workflow as workflow
 
@@ -47,12 +47,12 @@ def make_inputs(tmpl_path: str, output_dir_path: str, multi_params: Dict[str, Li
         for k, v in params.items(): params[k] = multi_params[k][v]
 
         out_filepath = name_format.format(params)
-        with open(out_filepath, w+) as output_file:
+        with open(out_filepath, 'w+') as output_file:
             output_file.write(tmpl_txt.format(params))
 
         # Add next combinations to toDo
         for key in params.keys():
             if params[key] + 1 < len(multi_params[key]):
-                toAdd = {k: for k, v in params.items()}
+                toAdd = {k: v for k, v in params.items()}
                 toAdd[key] += 1
                 toDo.append(toAdd)
