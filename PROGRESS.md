@@ -6,9 +6,9 @@ First a summary of the weekly plan proposed:
    - [X] Week 2-3: Make Ma5 Docker Image.
    - [X] Week 4-5: Implement and test Ma5 Docker Image.
    - [X] Week 6-7: Learn pyhf.
-   - [ ] Week 8-9: Implement pyhf subworkflow and docker and test.
+   - [X] Week 8-9: Implement pyhf subworkflow and docker and test.
    - [X] Week 10-11: REANA integration.
-   - [ ] Week 12: Write documentation.
+   - [X] Week 12: Write documentation.
    
 Below are comprehensive summaries of progress for each week. New progress will appear at the bottom by Friday 11:59pm (PDT) every week.
    
@@ -108,13 +108,7 @@ Below are comprehensive summaries of progress for each week. New progress will a
   - There will also be a summer workshop soon where we want to present recast-workflow, so we have been brainstorming more ideas of applications of recast.
   - I have also been reading through a paper on statistics in physics and constructing a presentation concurently that can be used to explain the analysis/statistic subworkflows well to new students/users.
  
-### TODO:
-  - Finish pyhf docker image
-  - Create unit tests for new features
-  - Thoroughly debug new features
-  - Start writing readthedocs for recast-workflow
-  - Create build script to publish project
-  - (this is not an exhaustive list)
+ ### This document was replaced by weekly meetings.
   
  
  
