@@ -24,6 +24,9 @@ author = 'Vladimir Ovechkin, Alex Schuy'
 # The full version, including alpha/beta/rc tags
 release = '1.0.0'
 
+# For read the docs io
+master_doc = 'index'
+
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
