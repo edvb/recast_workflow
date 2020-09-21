@@ -44,24 +44,23 @@ def build(name, filepath, output_path, scanparams, inv_save):
 @click.argument('template', type=click.Path(exists=True))
 @click.argument('scanparams', type=str)
 def getinputs(template, output_path, scanparams):
-    """ Generates input files by formatting template using scanparams dict 
+    """ Generates input files by formatting template using scanparams dict
     (eg. {param1: [value1, value2], param2: ...})."""
 
     if not output_path: output_path = '.'
     make_inputs(template, output_path, yaml.safe_load(scanparams))
 
 @cli.command()
-def getrspec():
-    """ Returns reana.yml used for submitting reana jobs. """
-    # TODO
-    pass
+@click.argument('workflowpath', type=click.Path(exists=True))
+@click.argument('dataoutpath', type=click.Path())
+@click.option('-o','--output-path', type=click.Path(file_okay=True, resolve_path=True), help='Path to output reana.yml to.')
+def reanayaml(workflowpath, dataoutpath, output_path):
+    """ Returns reana.yml used for submitting reana jobs 
+    for the given WORKFLOWPATH for which one workflow outputs to DATAOUTPATH"""
+    res = make_reana(workflowpath, dataoutpath)
+    if not output_path:
+        print(yaml.dump(res))
+        return
 
-@cli.command()
-def getdir():
-    """ Returns new directory to run scan. """
-    pass
-
-@cli.command()
-def exres():
-    """ Extract results from yadage workdir after scan. """
-    pass
+    with open(output_path, 'w+') as outfile:
+        outfile.write(yaml.dump(res))

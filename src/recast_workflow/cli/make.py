@@ -40,6 +40,8 @@ def inputs():
 @click.option('-i','--save-inv', is_flag=True, help='Save made workflow to inventory.')
 @click.option('-p','--print', 'print_wf', is_flag=True, help='Print workflow when done.')
 def new(output_path, view_only, common_inputs, no_interact, names, steps, save_inv, print_wf):
+    """ Create new workflow. """
+
     # User filters combinations by adding common inputs
     done_adding_ci = no_interact
     ci_used = {}

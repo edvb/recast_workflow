@@ -9,6 +9,8 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 import yaml
 
+yaml.Dumper.ignore_aliases = lambda *args : True
+
 from recast_workflow import definitions
 from recast_workflow.images import build_utils
 from recast_workflow import catalogue
