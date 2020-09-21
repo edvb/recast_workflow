@@ -77,7 +77,7 @@ def add(path: str, name='', raw_text=''):
     path = os.path.abspath(path)
     shutil.copyfile(path, INV_DIR / f'{name}.yml')
 
-def get_dir(name: str, output_path: str):
+def get_dir(name: str, output_path: str, reana: str = ''):
     """ Get directory with run script, inputs folder, and workflow """
     wf_path = get_inv_wf_path(name)
     if not wf_path: return
@@ -95,3 +95,8 @@ def get_dir(name: str, output_path: str):
     with open(output_path / 'inputs' / 'input.yml', 'w+') as inputs_file:
         inputs = {i: None for i in workflow.get_inputs({}, path=new_wf_path)}
         yaml.dump(inputs, inputs_file)
+
+    if reana:
+        # Add reana yml
+        reanayaml(new_wf_path, reana, output_path / 'reana.yaml')
+

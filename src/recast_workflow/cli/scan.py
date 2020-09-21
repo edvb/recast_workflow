@@ -64,3 +64,10 @@ def reanayaml(workflowpath, dataoutpath, output_path):
 
     with open(output_path, 'w+') as outfile:
         outfile.write(yaml.dump(res))
+
+@cli.command()
+@click.argument('inputspath', type=click.Path(exists=True))
+@click.argument('field', type=str)
+@click.argument('folderpath', type=(click.Path(exists=True)))
+def fillinputs(inputs, field, folderpath):
+    fill_inputs(inputs, field, folderpath)

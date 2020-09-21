@@ -73,10 +73,11 @@ def getyml(name, output_path):
 @cli.command()
 @click.argument('name', type=str)
 @click.argument('output-path', type=click.Path(file_okay=True, resolve_path=True))
-def getdir(name, output_path):
+@click.option('-r', '--reana', type=str, help='Include reana.yaml in output dir with given data output path.')
+def getdir(name, output_path, reanayml):
     """ Get directory with run script, inputs folder, and workflow """
     try:
-        inventory.get_dir(name, output_path)
+        inventory.get_dir(name, output_path, reana=reana)
     except FileExistsError as e:
         click.echo(f'Directory already exists: {str(e).rpartition(" ")[-1]}')
 

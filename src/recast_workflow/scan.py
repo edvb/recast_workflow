@@ -64,22 +64,37 @@ def make_inputs(tmpl_path: str, output_dir_path: str, multi_params: Dict[str, Li
                 toAdd[key] += 1
                 toDo.append(toAdd)
 
+def fill_inputs(inputs_path, field, folder_path):
+    """ Fills field in inputs.yml with list fo files in given folder_path. 
+    Returns list of files in given folder_path."""
+    allfiles = [f for f in os.listdir(folder_path) if os.path.isfile(os.path.join(folder_path, f))]
+
+    if inputs_path:
+        with open(inputs_path, 'r+') as inputs_file:
+            inputs_yml = yaml.safe_load(inputs.file.read())
+        inputs_yml[field] = allfiles
+        with open(inputs_path, 'w+') as inputs_file:
+            inputs_file.write(yaml.dump(inputs_yml))
+
+    return allfiles
+
 def make_reana(wf_path, output_path):
     """ Make reana.yml for workflow at wf_path with outputs at output path."""
     with open(wf_path, 'r'):
         wf_dict = yaml.safe_load(wf_path.read())
     wf_name = wf_dict['stages'][0]['name']
     return {
-            'version': '0.6.0'
+            'version': '0.6.0',
             'inputs': {
-                'files': ['inputs/']
+                'files': ['inputs/'],
                 'parameters': {'$ref: /inputs/input.yml'}
-                }
+                },
             'workflow': {
-                'type': 'yadage'
+                'type': 'yadage',
                 'file': os.path.basename(os.path.normpath(wf_path))
-                }
+                },
             'outputs': {
                 'files': [output_path]
+                }
             }
 
