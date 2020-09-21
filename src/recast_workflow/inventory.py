@@ -97,6 +97,5 @@ def get_dir(name: str, output_path: str, reana: str = ''):
         yaml.dump(inputs, inputs_file)
 
     if reana:
-        # Add reana yml
         reanayaml(new_wf_path, reana, output_path / 'reana.yaml')
 

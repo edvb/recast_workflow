@@ -1,0 +1,38 @@
+recast\_workflow.workflow
+=========================
+
+.. automodule:: recast_workflow.workflow
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      build_subworkflow
+      expand_workflow
+      get_inputs
+      main
+      make_name
+      make_subworkflow
+      make_workflow
+      make_workflow_dir
+      make_workflow_from_yaml
+      run_make
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

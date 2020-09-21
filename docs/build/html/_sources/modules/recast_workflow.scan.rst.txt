@@ -1,0 +1,33 @@
+recast\_workflow.scan
+=====================
+
+.. automodule:: recast_workflow.scan
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      build_multi
+      fill_inputs
+      get_multi_params
+      make_inputs
+      make_reana
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+

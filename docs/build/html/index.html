@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to recast-workflow’s documentation! &#8212; recast-workflow 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-recast-workflow-s-documentation">
+<h1>Welcome to recast-workflow’s documentation!<a class="headerlink" href="#welcome-to-recast-workflow-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Recast workflow is a library that allows you to quickly generate Yadage computational workflows to run simple truth level reinterpretations without spending a significant amount of time or resources.</p>
+</div>
+<div class="section" id="module-recast_workflow.inventory">
+<span id="inventory-py"></span><h1>inventory.py<a class="headerlink" href="#module-recast_workflow.inventory" title="Permalink to this headline">¶</a></h1>
+<p>Inventory is storage for generated workflows.</p>
+<dl class="py function">
+<dt id="recast_workflow.inventory.add">
+<code class="sig-prename descclassname">recast_workflow.inventory.</code><code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">raw_text</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#recast_workflow.inventory.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add workflow at path to inventory</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="recast_workflow.inventory.get_dir">
+<code class="sig-prename descclassname">recast_workflow.inventory.</code><code class="sig-name descname">get_dir</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">output_path</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">reana</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#recast_workflow.inventory.get_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get directory with run script, inputs folder, and workflow</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="recast_workflow.inventory.get_inv_wf_path">
+<code class="sig-prename descclassname">recast_workflow.inventory.</code><code class="sig-name descname">get_inv_wf_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#recast_workflow.inventory.get_inv_wf_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return path to workflow saved in inventory. Returns None if not found.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="recast_workflow.inventory.get_inv_wf_yml">
+<code class="sig-prename descclassname">recast_workflow.inventory.</code><code class="sig-name descname">get_inv_wf_yml</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">output_file</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">text</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#recast_workflow.inventory.get_inv_wf_yml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return yaml text of given workflow name</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="recast_workflow.inventory.get_wf_path">
+<code class="sig-prename descclassname">recast_workflow.inventory.</code><code class="sig-name descname">get_wf_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#recast_workflow.inventory.get_wf_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get path to workflow. Returns None if not found.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="recast_workflow.inventory.list_inv">
+<code class="sig-prename descclassname">recast_workflow.inventory.</code><code class="sig-name descname">list_inv</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>str<span class="p">]</span><a class="headerlink" href="#recast_workflow.inventory.list_inv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns list all workflow names in inventory</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="recast_workflow.inventory.remove">
+<code class="sig-prename descclassname">recast_workflow.inventory.</code><code class="sig-name descname">remove</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#recast_workflow.inventory.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove workflow from inventory</p>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="module-recast_workflow.catalogue">
+<span id="catalogue-py"></span><h1>catalogue.py<a class="headerlink" href="#module-recast_workflow.catalogue" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="recast_workflow.catalogue.get_all_combinations">
+<code class="sig-prename descclassname">recast_workflow.catalogue.</code><code class="sig-name descname">get_all_combinations</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#recast_workflow.catalogue.get_all_combinations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all possible subworkflow combinations.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="recast_workflow.catalogue.get_environment_settings">
+<code class="sig-prename descclassname">recast_workflow.catalogue.</code><code class="sig-name descname">get_environment_settings</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">step</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">subworkflow_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">include_default</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>List<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Dict<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span><span class="p">]</span><a class="headerlink" href="#recast_workflow.catalogue.get_environment_settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the possible environment settings for the given subworkflow.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="recast_workflow.catalogue.get_invalid_inputs">
+<code class="sig-prename descclassname">recast_workflow.catalogue.</code><code class="sig-name descname">get_invalid_inputs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">step</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">subworkflow_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span><a class="headerlink" href="#recast_workflow.catalogue.get_invalid_inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of the elements from the given inputs that are invalid for the given subworkflow.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="recast_workflow.catalogue.get_missing_inputs">
+<code class="sig-prename descclassname">recast_workflow.catalogue.</code><code class="sig-name descname">get_missing_inputs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">step</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">subworkflow_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">inputs</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">include_descriptions</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">include_optional</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; Union<span class="p">[</span>List<span class="p">[</span>str<span class="p">]</span><span class="p">, </span>Dict<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span><span class="p">]</span><a class="headerlink" href="#recast_workflow.catalogue.get_missing_inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the inputs for the given subworkflow that are missing from the given inputs.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="recast_workflow.catalogue.get_valid_combinations">
+<code class="sig-prename descclassname">recast_workflow.catalogue.</code><code class="sig-name descname">get_valid_combinations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">common_inputs</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>OrderedDict<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span><span class="p">]</span><a class="headerlink" href="#recast_workflow.catalogue.get_valid_combinations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given values for common inputs, returns all combinations of subworkflows that support those values.
+Each common input should be defined in recast_workflow/common_inputs.yml, in which it is associated with a set of steps.
+Each subworkflow for those steps is assumed to implement a common_inputs.py file with an is_valid() -&gt; bool function.
+This function is called for each subworkflow to determine whether it should be included.
+Once the set of allowed subworkflows for these steps is determined, the set of all possible combinations is generated using the interfaces listed in description.yml for each subworkflow.
+:param common_inputs: A dict where each key-value pair is of the form (input name, input value).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A list of ordered dictionaries, where each ordered dictionary has key-value pairs of the form (step, subworkflow) which describe one possible subworkflow combination that is valid for the given common inputs.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="module-recast_workflow.workflow">
+<span id="workflow-py"></span><h1>workflow.py<a class="headerlink" href="#module-recast_workflow.workflow" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="recast_workflow.workflow.build_subworkflow">
+<code class="sig-prename descclassname">recast_workflow.workflow.</code><code class="sig-name descname">build_subworkflow</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">step</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">environment_settings</span><span class="p">:</span> <span class="n">dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#recast_workflow.workflow.build_subworkflow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds the images corresponding to the given subworkflow and environment settings.
+The subworkflow’s base image directory is searched recursively for dockerfiles. Each directory with a dockerfile
+is assumed to correspond to an image, where the name of the directory is equivalent to the name of the image. If
+a build.py exists in an image directory, it is run and assumed to handle building the image. Otherwise,
+the ‘build_tags’ section of the description.yml for the subworkflow is checked for an appropriate tag. It is
+assumed that this tag is also the build arg for the image creation, and a corresponding docker build and push are
+run.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="recast_workflow.workflow.expand_workflow">
+<code class="sig-prename descclassname">recast_workflow.workflow.</code><code class="sig-name descname">expand_workflow</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workflow_path</span><span class="p">:</span> <span class="n">pathlib.Path</span></em>, <em class="sig-param"><span class="n">toplevel_path</span><span class="p">:</span> <span class="n">pathlib.Path</span></em>, <em class="sig-param"><span class="n">versions</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#recast_workflow.workflow.expand_workflow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the workflow with all ref replaced by .yml files in the local folder.
+Version number will be specified in this process.
+:param versions: the dict containing all version numbers
+:param workflow_path: the workflow file
+:param toplevel_path: the local folder
+:return: the workflow with all ref replaced by .yml files in the local folder</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="recast_workflow.workflow.get_inputs">
+<code class="sig-prename descclassname">recast_workflow.workflow.</code><code class="sig-name descname">get_inputs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">workflow</span></em>, <em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>str<span class="p">]</span><a class="headerlink" href="#recast_workflow.workflow.get_inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find all inputs to a yadage workflow with no encapsulated workflows.
+:param dictionary that represents workflow:
+:param Or path to workflow .yml file:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List of names of all parameters that come from the ‘init’ stage in yadage</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="recast_workflow.workflow.make_name">
+<code class="sig-prename descclassname">recast_workflow.workflow.</code><code class="sig-name descname">make_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">wf_dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#recast_workflow.workflow.make_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates name for workflow by combining names of all steps
+:param dictionary that represents workflow:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Underscore-seperated list of names of steps</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="recast_workflow.workflow.make_subworkflow">
+<code class="sig-prename descclassname">recast_workflow.workflow.</code><code class="sig-name descname">make_subworkflow</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">step</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">subworkflow_name</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">environment_settings</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#recast_workflow.workflow.make_subworkflow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a yadage workflow for the given subworkflow with the given environment settings.
+If make.py exists in the corresponding subworkflow directory, it is run with the assumption that it will handle making the subworkflow.
+Otherwise, workflow.py in the subworkflow directory is expanded using jsonref and any environment variables enclosed in braces are replaced with the corresponding value in environment_settings.
+:returns: A dict representing the contents of a yaml file that specifies a yadage workflow.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="recast_workflow.workflow.make_workflow">
+<code class="sig-prename descclassname">recast_workflow.workflow.</code><code class="sig-name descname">make_workflow</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">steps</span><span class="p">:</span> <span class="n">List<span class="p">[</span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">names</span><span class="p">:</span> <span class="n">List<span class="p">[</span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">environment_settings</span><span class="p">:</span> <span class="n">List<span class="p">[</span>Dict<span class="p">[</span>str<span class="p">, </span>str<span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Dict<a class="headerlink" href="#recast_workflow.workflow.make_workflow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a yadage workflow using the given subworkflow specifications.
+:param steps: A list of the subworkflow steps for each subworkflow.
+:param names: A list of the subworkflow names for each subworkflow.
+:param environment_settings: A list of dicts mapping environment setting names to values for each subworkflow.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A dict representing the contents of a yaml file that specifies a yadage workflow.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="module-recast_workflow.scan">
+<span id="scan-py"></span><h1>scan.py<a class="headerlink" href="#module-recast_workflow.scan" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="recast_workflow.scan.build_multi">
+<code class="sig-prename descclassname">recast_workflow.scan.</code><code class="sig-name descname">build_multi</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">single_wf</span><span class="p">:</span> <span class="n">dict</span></em>, <em class="sig-param"><span class="n">multi_params</span><span class="p">:</span> <span class="n">List<span class="p">[</span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span> &#x2192; dict<a class="headerlink" href="#recast_workflow.scan.build_multi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert single stage workflow to multistage workflow given scan parameters.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="recast_workflow.scan.fill_inputs">
+<code class="sig-prename descclassname">recast_workflow.scan.</code><code class="sig-name descname">fill_inputs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs_path</span></em>, <em class="sig-param"><span class="n">field</span></em>, <em class="sig-param"><span class="n">folder_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#recast_workflow.scan.fill_inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fills field in inputs.yml with list fo files in given folder_path.
+Returns list of files in given folder_path.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="recast_workflow.scan.get_multi_params">
+<code class="sig-prename descclassname">recast_workflow.scan.</code><code class="sig-name descname">get_multi_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tmpl_path</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#recast_workflow.scan.get_multi_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get multiparameters from template file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="recast_workflow.scan.make_inputs">
+<code class="sig-prename descclassname">recast_workflow.scan.</code><code class="sig-name descname">make_inputs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tmpl_path</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">output_dir_path</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">multi_params</span><span class="p">:</span> <span class="n">Dict<span class="p">[</span>str<span class="p">, </span>List<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">prefix</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="headerlink" href="#recast_workflow.scan.make_inputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate input files from template formatted with proper multi param values.
+multi_params is a dict that maps multi_params name to list of values.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="recast_workflow.scan.make_reana">
+<code class="sig-prename descclassname">recast_workflow.scan.</code><code class="sig-name descname">make_reana</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">wf_path</span></em>, <em class="sig-param"><span class="n">output_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#recast_workflow.scan.make_reana" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make reana.yml for workflow at wf_path with outputs at output path.</p>
+</dd></dl>
+
+<div class="toctree-wrapper compound">
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">recast-workflow</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Vladimir Ovechkin, Alex Schuy.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

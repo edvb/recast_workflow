@@ -1,0 +1,33 @@
+recast\_workflow.catalogue
+==========================
+
+.. automodule:: recast_workflow.catalogue
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+   
+      get_all_combinations
+      get_environment_settings
+      get_invalid_inputs
+      get_missing_inputs
+      get_valid_combinations
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
