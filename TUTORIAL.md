@@ -148,7 +148,7 @@ Then, open `inputs/input.yml` in a text editor. The contents of the file should 
     # Fill inputs.yml with the rest of the appropriate inputs from here https://raw.githubusercontent.com/vladov3000/fpd-reana/master/inputs/input.yml
     cd ..
     
-    # Run scan lineary
+    # Run to scan linearly
     ./run.sh
     
     # Alternatively submit as job to reana for parallelization (required to be on lxplus or cern network to submit reana spec)
