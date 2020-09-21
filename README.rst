@@ -34,7 +34,7 @@ To install and run all tests:
 
 ::
 
-   git clone url
+   git clone https://github.com/vladov3000/recast_workflow.git
    cd recast_workflow
    python3 -m venv ./venv
    source venv/bin/activate
