@@ -137,5 +137,19 @@ Then, open `inputs/input.yml` in a text editor. The contents of the file should 
     
     # Create and run a scan
     recast-wf scan build -n madgraph_pythia-rivet-contur proc_card | less # if you just want to check out the output yml
-    recast-wf scan build -n madgraph_pythia-rivet-contur -i proc_card
-    recast-wf inv ls # Confirm multi_madgraph_pythia_rivet_contur is present
+    recast-wf scan build -n madgraph_pythia-madanalysis -i param_card
+    recast-wf inv ls # Confirm multi_madgraph_pythia-madanalysis is present
+    recast-wf inv getdir -r multi_madgraph_pythia-madanalysis .
+    cd inputs
+    # Download/write file at https://raw.githubusercontent.com/vladov3000/fpd-reana/master/inputs/param_tmpl_mChi_mPhi.dat into param_tmpl.dat
+    mkdir param_cards
+    recast-wf scan getinputs -o param_cards param_tmpl.dat {mPhi: [100, 200, 300, 400, 500], mChi: [100, 200, 300, 400, 500]}
+    recast-wf scan fillinputs -a inputs.yml param_cards ./param_cards
+    # Fill inputs.yml with the rest of the appropriate inputs from here https://raw.githubusercontent.com/vladov3000/fpd-reana/master/inputs/input.yml
+    cd ..
+    
+    # Run scan lineary
+    ./run.sh
+    
+    # Alternatively submit as job to reana for parallelization (required to be on lxplus or cern network to submit reana spec)
+    reana-client create -n multi_madgraph_pythia-madanalysis -f reana.yml
