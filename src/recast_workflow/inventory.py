@@ -9,7 +9,7 @@ import recast_workflow.workflow as workflow
 from recast_workflow.definitions import *
 
 def get_wf_path(path: str) -> str:
-    """ Get path to workflow. Returns None if not found."""
+    """ Get path to workflow. Returns None if not found """
     # Get end of filepath and seperate by : to see if file is not local
     path_suffix = os.path.abspath(path).rsplit('/', 1)[-1].split(':')
     if len(path_suffix) != 2: return os.path.abspath(path)
@@ -26,7 +26,7 @@ def get_wf_path(path: str) -> str:
     print("{path} not found.")
 
 def get_inv_wf_path(name: str) -> str:
-    """ Return path to workflow saved in inventory. Returns None if not found."""
+    """ Return path to workflow saved in inventory. Returns None if not found """
 
     # Only add .yml file suffix if not given in input name
     if not name.endswith('.yml'): name += '.yml'
@@ -53,7 +53,7 @@ def list_inv() -> List[str]:
     """ Returns list all workflow names in inventory """
     res = []
     for f in os.listdir(INV_DIR):
-        # Make sure .yml files are not included in list (exclude __init__.py or hidden files)
+        # Make sure only .yml files are included in list (exclude __init__.py or hidden files)
         if f.endswith('.yml'):
             # Append filename without .yml suffix
             res.append(f.rsplit('/',1)[-1].rstrip('.yml'))
@@ -77,7 +77,7 @@ def add(path: str, name='', raw_text=''):
     path = os.path.abspath(path)
     shutil.copyfile(path, INV_DIR / f'{name}.yml')
 
-def get_dir(name: str, output_path: str, reana: str = ''):
+def get_dir(name: str, output_path: str = ".", reana: str = ''):
     """ Get directory with run script, inputs folder, and workflow """
     wf_path = get_inv_wf_path(name)
     if not wf_path: return
@@ -93,9 +93,9 @@ def get_dir(name: str, output_path: str, reana: str = ''):
 
     # Fill inputs.yml
     with open(output_path / 'inputs' / 'input.yml', 'w+') as inputs_file:
+        # TODO auto fill inputs
         inputs = {i: None for i in workflow.get_inputs({}, path=new_wf_path)}
         yaml.dump(inputs, inputs_file)
 
     if reana:
         reanayaml(new_wf_path, reana, output_path / 'reana.yaml')
-

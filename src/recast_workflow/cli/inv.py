@@ -70,7 +70,7 @@ def getyml(name, output_path):
 
 @cli.command()
 @click.argument('name', type=str)
-@click.argument('output-path', type=click.Path(file_okay=True, resolve_path=True))
+@click.argument('output-path', type=click.Path(file_okay=True, resolve_path=True), default=".")
 @click.option('-r', '--reana', type=str, help='Include reana.yaml in output dir with given data output path.')
 def getdir(name, output_path, reana):
     """ Get directory with run script, inputs folder, and workflow """
