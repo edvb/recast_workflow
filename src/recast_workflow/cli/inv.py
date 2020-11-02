@@ -51,7 +51,6 @@ def rm(names, rm_all, force):
 @click.argument('path', type=click.Path(exists=True))
 def add(path, name):
     """ Add workflow in .yml file at PATH to inventory. """
-
     inventory.add(path, name=name)
 
 @cli.command()
@@ -59,7 +58,6 @@ def add(path, name):
 @click.option('-o','--output-path', type=click.Path(file_okay=True, resolve_path=True), help='Path to output found workflow to.')
 def getyml(name, output_path):
     """ Get text of workflow from inventory. """
-
     res = inventory.get_inv_wf_yml(name, text=True)
     if not output_path:
         print(res)
@@ -74,7 +72,7 @@ def getyml(name, output_path):
 @click.argument('name', type=str)
 @click.argument('output-path', type=click.Path(file_okay=True, resolve_path=True))
 @click.option('-r', '--reana', type=str, help='Include reana.yaml in output dir with given data output path.')
-def getdir(name, output_path, reanayml):
+def getdir(name, output_path, reana):
     """ Get directory with run script, inputs folder, and workflow """
     try:
         inventory.get_dir(name, output_path, reana=reana)
