@@ -8,6 +8,12 @@ command line interface as well as a python library.
 
 Read the documentation `here`_.
 
+See the tutorial `here <TUTORIAL.md>`__.
+
+Also make sure to check out the `FAQ <FAQ.md>`__ if you run into any problems.
+
+To get a quick overview of the code architecture read `here <ARCHITECTURE.md>`__.
+
 This was developed as part of IRIS-HEP fellowship. The full proposal can
 be viewed `here <https://iris-hep.org/fellows/vovechkin.html>`__.
 
