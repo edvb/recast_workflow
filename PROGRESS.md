@@ -1,6 +1,6 @@
 # Progress of IRIS-HEP Research Fellowship
 
-First a summary of the weekly plan proposed:  
+First a summary of the weekly plan proposed:
 
    - [X] Week 1-2: Learn Madanalysis5(ma5).
    - [X] Week 2-3: Make Ma5 Docker Image.
@@ -9,9 +9,9 @@ First a summary of the weekly plan proposed:
    - [X] Week 8-9: Implement pyhf subworkflow and docker and test.
    - [X] Week 10-11: REANA integration.
    - [X] Week 12: Write documentation.
-   
+
 Below are comprehensive summaries of progress for each week. New progress will appear at the bottom by Friday 11:59pm (PDT) every week.
-   
+
 ### Week 1 (June 19):
   - By this point, I was already ahead by a few weeks, since I hard started investigating ma5 early.
   - I had finished running an end-to-end analysis of an interpretation of the tchannel model for one parameter point.
@@ -37,7 +37,7 @@ Below are comprehensive summaries of progress for each week. New progress will a
   - The run card contained a series of commands that I would normally have to execture manually, but ma5 had a feature that would process them for me.
   - The recast card contained the analysis name I wanted to reuse.
   - The run and recast cards can be found [here](https://github.com/vladov3000/fpd-scanner/blob/master/inputs/ma5_recast_card.dat) and [here](https://github.com/vladov3000/fpd-scanner/blob/master/inputs/ma5_run_card.dat)
-  - Once that had been setup, I could copy the ma5 workflow I used for the 
+  - Once that had been setup, I could copy the ma5 workflow I used for the
   - Workflow found [here](https://github.com/vladov3000/fpd-scanner/blob/master/workflows/fullma5.yml)
   - I used the input madgraph param_card.dat file from the previous point and reproduced its result by running this new workflow.
   - Then, I made a template file for the input param_card
@@ -71,7 +71,7 @@ Below are comprehensive summaries of progress for each week. New progress will a
 ### Week 5 (July 17):
   - This week was dedicated to learning about pyhf and cleaning up the project, which had gotten bloated with random files.
   - The previous setup had recast-workflow nested in recast-cli, the command line interface for workflow.
-  - Due to this setup, a setup script was required to set the $PYTHONPATH enviromental variable (points to where python can search for modules).
+  - Due to this setup, a setup script was required to set the `$PYTHONPATH` enviromental variable (points to where python can search for modules).
   - There were also very many complexities with the packageging of recast-cli, since there are many non-.py files that had to be included.
   - This is why I decided to reorganize the project by copying in folders one at a time from recast-workflow. Currently, recast-cli has not been fully integrated yet, but recast-workflow only fails one test.
   - I also changed recast-workflow to be an installable package - this allows for a non-command line python interface with the package (e.g. `import recast_workflow`).
@@ -80,7 +80,7 @@ Below are comprehensive summaries of progress for each week. New progress will a
   - With pyhf, I was able to convert a HistFitter analysis workspace to pyhf and do a basic fit.
   - This was done for the MonoJet analysis to reproduce its results as well as for a simple single-bin example. The githubs repos are [here](https://github.com/vladov3000/HistToPyhf) and [here](https://github.com/vladov3000/pyvshf).
   - I am ready to start pyhf integration into recast-workflow and focus on reworking recast-workflow through better organization and more unit tests
- 
+
  ### Week 6 (July 24):
   - I added back the command line interface component to recast-workflow
   - Found at https://github.com/vladov3000/recast_workflow/tree/master/src/recast_workflow/cli
@@ -103,13 +103,13 @@ Below are comprehensive summaries of progress for each week. New progress will a
   - `add` will add a workflow to the inventory at a local path. This will be useful later when the scan build feature is copied back in. This would allow users to take a workflow too complex for recast-wf to make, and convert it to a multistage workflow (allowing for parameter scans and parallelisation using REANA).
   - `getyml` will print the workflow text or give a yaml file with the workflow. Since recast-wf automatically replaces all references to other files in the main workflow file, the whole workflow can be stored in one yaml file.
   - `getdir` will produce a directory which includes some extra files/folders to organize the process of running the workflow. For example, it includes a run script which is used as an alias so users don't have to type in the full command to run a yadage workflow with the right arguments (`yadage-run workdir $WORKFLOW inputs/input.yml -d initdir=$PWD/inputs` -> `./run.sh`). All the extra files are stored in a templates folder which can be easily modified to include new files.
-  - There are still some complexities with pyhf which require more investigation. Specifically, how .yoda files translate to pyhf JSON histograms. 
+  - There are still some complexities with pyhf which require more investigation. Specifically, how .yoda files translate to pyhf JSON histograms.
   - I have also begun working on documentation by writing the introduction of the first tutorial (this will later be moved to a readthedocs.io page): https://github.com/vladov3000/recast_workflow/blob/master/TUTORIAL.md
   - There will also be a summer workshop soon where we want to present recast-workflow, so we have been brainstorming more ideas of applications of recast.
   - I have also been reading through a paper on statistics in physics and constructing a presentation concurently that can be used to explain the analysis/statistic subworkflows well to new students/users.
- 
+
  ### This document was replaced by weekly meetings.
-  
- 
- 
- 
+
+
+
+

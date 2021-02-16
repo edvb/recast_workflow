@@ -31,7 +31,7 @@ def ls():
 @click.option('-f', '--force', is_flag=True, help='Do not ask for confirmation before removing.')
 @click.argument('names', nargs=-1)
 def rm(names, rm_all, force):
-    """ Remove workflows with names NAMES from inventory """
+    """ Remove workflows with NAMES from inventory """
 
     def confirm() -> bool:
         """ Ask for confirmation before removing """
@@ -50,14 +50,14 @@ def rm(names, rm_all, force):
 @click.option('-n', '--name', type=str, help='Set name in inventory')
 @click.argument('path', type=click.Path(exists=True))
 def add(path, name):
-    """ Add workflow in .yml file at PATH to inventory. """
+    """ Add workflow in .yml file at PATH to inventory """
     inventory.add(path, name=name)
 
 @cli.command()
 @click.argument('name', type=str)
 @click.option('-o','--output-path', type=click.Path(file_okay=True, resolve_path=True), help='Path to output found workflow to.')
 def getyml(name, output_path):
-    """ Get text of workflow from inventory. """
+    """ Get text of workflow from inventory """
     res = inventory.get_inv_wf_yml(name, text=True)
     if not output_path:
         print(res)

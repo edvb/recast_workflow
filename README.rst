@@ -15,7 +15,8 @@ Also make sure to check out the `FAQ <FAQ.md>`__ if you run into any problems.
 To get a quick overview of the code architecture read `here <ARCHITECTURE.md>`__.
 
 This was developed as part of IRIS-HEP fellowship. The full proposal can
-be viewed `here <https://iris-hep.org/fellows/vovechkin.html>`__.
+be viewed `here <https://iris-hep.org/fellows/edvanbruggen.html>`__. It is built off the
+fellowship by Vlad which can be seen `here <https://iris-hep.org/fellows/vovechkin.html>`__.
 
 Installation
 ------------
