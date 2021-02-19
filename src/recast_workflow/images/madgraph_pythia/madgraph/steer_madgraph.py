@@ -38,8 +38,8 @@ def run_madgraph(proc_card_path, output_path, ufotar, param_card_path=None, run_
             ufo_name, ufo_ext = os.path.splitext(ufotar)
         assert ufo_ext == '.tar', 'ufo must be a tar file!'
         ufo_name = ufo_name.strip('.ufo')
-        subprocess.call(['tar', '-xvf', ufotar])
-        ufo_path = 'madgraph/models/{}'.format(ufo_name)
+        subprocess.call(['tar', '-xf', ufotar])
+        ufo_path = '/code/madgraph/models/{}'.format(ufo_name)
         shutil.rmtree(ufo_path, ignore_errors=True)
         shutil.copytree(ufo_name, ufo_path)
     proc_card_copy_path = os.path.join(os.getcwd(), 'proc_card.dat')

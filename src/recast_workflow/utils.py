@@ -18,7 +18,6 @@ def get_image_dir_path(step: str, subworkflow: str) -> Path:
 def get_step_dir_path(step: str) -> Path:
     return definitions.SUBWORKFLOWS_DIR / step
 
-
 def get_common_inputs_description_path() -> Path:
     return definitions.SRC_DIR / 'common_inputs.yml'
 
@@ -30,10 +29,7 @@ def get_common_inputs(step=None, include_descriptions=False) -> Dict[str, str]:
         text = yaml.safe_load(f)
         if step:
             text = {k: v for k, v in text.items() if step in v['steps']}
-        if include_descriptions:
-            return text
-        else:
-            return text.keys()
+        return text if include_descriptions else text.keys()
 
 
 def get_subworkflow_description(step, subworkflow):

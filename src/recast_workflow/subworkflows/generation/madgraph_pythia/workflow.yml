@@ -7,6 +7,7 @@ stages:
         outputlhe: "{workdir}/events.lhe"
         n_events: { step: init, output: n_events }
         proc_card: { step: init, output: proc_card }
+        ufotar: { step: init, output: ufotar }
       step: { $ref: "madgraph.yml" }
   - name: pythia
     dependencies: ["init", "madgraph"]

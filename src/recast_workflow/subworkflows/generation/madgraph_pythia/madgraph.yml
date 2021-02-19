@@ -1,6 +1,6 @@
 process:
   process_type: string-interpolated-cmd
-  cmd: python steer_madgraph.py {proc_card} {outputlhe} -n {n_events}
+  cmd: python steer_madgraph.py {proc_card} {outputlhe} -n {n_events} --ufotar {ufotar}
 publisher:
   publisher_type: "frompar-pub"
   outputmap:
