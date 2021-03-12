@@ -15,11 +15,17 @@ def edit_proc_card(proc_card_path, param_card_path, run_card_path, shower_card_p
             f.write('shower=OFF\ndone\n')
         # Read from the given cards and set the number of events.
         if param_card_path is not None and param_card_path != "default":
-            f.write('{}\n'.format(param_card_path))
+            with open(param_card_path, 'r') as card:
+                f.write(card.read())
+            f.write('\n')
         if run_card_path is not None and run_card_path != "default":
-            f.write('{}\n'.format(run_card_path))
+            with open(run_card_path, 'r') as card:
+                f.write(card.read())
+            f.write('\n')
         if shower and shower_card_path is not None and shower_card_path != "default":
-            f.write('{}\n'.format(shower_card_path))
+            with open(shower_card_path, 'r') as card:
+                f.write(card.read())
+            f.write('\n')
         if n_events is not None:
             f.write('set nevents {}\n'.format(n_events))
         f.write('0\n')
