@@ -1,10 +1,14 @@
 FROM ubuntu
+ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get -y update
-RUN apt-get -y install python2.7 gcc gfortran g++ make python-pip wget gnuplot bc cmake rsync zip unzip
+RUN apt-get -y install python2.7 gcc gfortran g++ make wget gnuplot bc cmake rsync zip unzip
+RUN wget https://bootstrap.pypa.io/pip/2.7/get-pip.py -O get-pip.py
+RUN python2.7 get-pip.py
 RUN pip install numpy scipy
+RUN ln -s /usr/bin/python2.7 /usr/bin/python
 RUN mkdir /code
 WORKDIR /code
-ARG madgraph_version="2.6.7"
+ARG madgraph_version="2.7.3"
 RUN echo "Madgraph version is ${madgraph_version}"
 RUN ["/bin/bash", "-c", "wget https://launchpad.net/mg5amcnlo/${madgraph_version:0:1}.0/${madgraph_version:0:3}.x/+download/MG5_aMC_v${madgraph_version}.tar.gz"]
 RUN ["/bin/bash", "-c", "tar -xzf MG5_aMC_v${madgraph_version}.tar.gz; rm MG5_aMC_v${madgraph_version}.tar.gz; mv MG5_aMC_v${madgraph_version:0:1}_${madgraph_version:2:1}_${madgraph_version:4:1} madgraph"]
