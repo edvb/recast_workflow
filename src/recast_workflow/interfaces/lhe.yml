@@ -1,0 +1,3 @@
+description: 'A simple interface that passes a single lhe file from generation to shower.'
+parameters:
+  - {name: 'lhe', description: 'A .lhe file containing events generator from parton shower.'}

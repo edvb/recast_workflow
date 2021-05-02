@@ -1,10 +1,10 @@
 process:
   process_type: string-interpolated-cmd
-  cmd: python steer_madgraph.py {proc_card} {outputlhe} -n {n_events} --ufotar {ufotar}
+  cmd: python steer_madgraph.py {proc_card} {outputlhe} -n {n_events} --ufotar {ufotar} --param_card {param_card}
 publisher:
   publisher_type: "frompar-pub"
   outputmap:
-    lhefile: outputlhe
+    lhe: outputlhe
 environment:
   environment_type: "docker-encapsulated"
   image: recast/madgraph

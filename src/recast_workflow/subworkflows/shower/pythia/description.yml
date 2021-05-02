@@ -1,0 +1,13 @@
+description: 'Perform parton showering through Pythia 8.'
+environment_settings:
+  - {name: pythia_version, default: '2.6.6'}
+build_tags:
+  pythia: pythia_version
+inputs:
+  - {name: n_events, description: 'The number of events that should be generated.'}
+  - {name: pythia_card, description: 'Pythia settings.', optional: true}
+interfaces:
+  input:
+    - lhe
+  output:
+    - hepmc

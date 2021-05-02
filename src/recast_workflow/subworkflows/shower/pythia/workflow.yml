@@ -1,0 +1,9 @@
+stages:
+  - name: pythia
+    dependencies: ["init"]
+    scheduler:
+      scheduler_type: "singlestep-stage"
+      parameters:
+        outputhepmc: "{workdir}/output.hepmc"
+        n_events: { step: init, output: n_events }
+      step: { $ref: "pythia.yml" }
