@@ -1,0 +1,12 @@
+stages:
+  - name: herwig
+    dependencies: ["init"]
+    scheduler:
+      scheduler_type: "singlestep-stage"
+      parameters:
+        n_events: { step: init, output: n_events }
+        herwig_file: { step: init, output: herwig_file }
+        herwig_model: { step: init, output: herwig_model }
+        herwig_so: { step: init, output: herwig_so }
+        outputhepmc: "{workdir}/output.hepmc"
+      step: { $ref: "herwig.yml" }

@@ -1,0 +1,15 @@
+description: 'Perform parton level showering through Herwig.'
+environment_settings:
+  - {name: herwig_version, default: 'latest'}
+build_tags:
+  herwig: herwig_version
+inputs:
+  - {name: n_events, description: 'The number of events that should be generated.'}
+  - {name: herwig_file, description: 'The IN card for Herwig.'}
+  - {name: herwig_model, description: 'The model file for BSM Herwig.'}
+  - {name: herwig_so, description: 'The shared object file for the Herwig model.'}
+interfaces:
+  input:
+    - lhe
+  output:
+    - hepmc
