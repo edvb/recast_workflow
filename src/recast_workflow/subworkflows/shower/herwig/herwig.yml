@@ -1,11 +1,12 @@
 process:
   process_type: interpolated-script-cmd
   script: |
-    sed -i 's#unweighted_events.lhe#{lhe}#g' {herwig_file}
     cp {herwig_model} ./FRModel.model
     cp {herwig_so} ./FRModel.so
+    cp {herwig_file} ./model.in
+    sed -i 's#events.lhe#{lhe}#g' model.in
     export LD_LIBRARY_PATH=/herwig/lib:/herwig/lib64
-    bash herwig-run.sh {herwig_file} {n_events}
+    bash herwig-run.sh model.in {n_events}
     cp output.hepmc {outputhepmc}
 publisher:
   publisher_type: "frompar-pub"
