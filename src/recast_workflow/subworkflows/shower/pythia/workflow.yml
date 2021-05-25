@@ -6,4 +6,5 @@ stages:
       parameters:
         outputhepmc: "{workdir}/output.hepmc"
         n_events: { step: init, output: n_events }
+        pythia_card: { step: init, output: pythia_card }
       step: { $ref: "pythia.yml" }

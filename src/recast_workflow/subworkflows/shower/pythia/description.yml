@@ -1,6 +1,6 @@
 description: 'Perform parton showering through Pythia 8.'
 environment_settings:
-  - {name: pythia_version, default: '2.6.6'}
+  - {name: pythia_version, default: '8240'}
 build_tags:
   pythia: pythia_version
 inputs:

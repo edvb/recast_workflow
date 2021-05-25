@@ -1,11 +1,11 @@
 process:
     process_type: string-interpolated-cmd
-    cmd: 'python steer_pythia.py {lhe} {outputhepmc} {n_events}'
+    cmd: 'python steer_pythia.py {lhe} {outputhepmc} {n_events} {pythia_card}'
 publisher:
   publisher_type: "frompar-pub"
   outputmap:
     hepmc: outputhepmc
 environment:
   environment_type: "docker-encapsulated"
-  image: recast/madgraph-pythia
+  image: recast/pythia
   imagetag: {pythia_version}
